@@ -17,7 +17,7 @@ package org.jenkinsci.plugins.artifact.signing.config;
 
 import java.util.UUID;
 
-import org.jenkinsci.plugins.artifact.lifecycle.config.IdentifierUtils;
+import org.jenkinsci.plugins.identifieddata.api.IdentifierUtils;
 import org.kohsuke.stapler.DataBoundSetter;
 
 import edu.umd.cs.findbugs.annotations.NonNull;

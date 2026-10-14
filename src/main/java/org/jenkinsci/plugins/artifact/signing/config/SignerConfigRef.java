@@ -15,8 +15,8 @@
  */
 package org.jenkinsci.plugins.artifact.signing.config;
 
-import org.jenkinsci.plugins.artifact.lifecycle.config.IdentifierUtils;
-import org.jenkinsci.plugins.artifact.lifecycle.config.RefUUID;
+import org.jenkinsci.plugins.identifieddata.api.IdentifierUtils;
+import org.jenkinsci.plugins.identifieddata.api.RefUUID;
 import org.kohsuke.stapler.AncestorInPath;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.QueryParameter;

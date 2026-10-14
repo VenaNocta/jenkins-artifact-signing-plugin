@@ -17,9 +17,9 @@ package org.jenkinsci.plugins.artifact.signing.config;
 
 import java.io.Serializable;
 
-import org.jenkinsci.plugins.artifact.lifecycle.config.IdentifiedByUUID;
-import org.jenkinsci.plugins.artifact.lifecycle.config.ReferenceableByName;
 import org.jenkinsci.plugins.artifact.signing.engines.SigningEngine;
+import org.jenkinsci.plugins.identifieddata.api.IdentifiedByUUID;
+import org.jenkinsci.plugins.identifieddata.api.ReferenceableByName;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 
 import hudson.model.Describable;
