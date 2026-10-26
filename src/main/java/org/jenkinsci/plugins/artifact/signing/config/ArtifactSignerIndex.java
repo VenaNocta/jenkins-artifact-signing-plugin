@@ -33,6 +33,7 @@ import org.jenkinsci.plugins.artifact.lifecycle.ui.GlobalArtifactLifecycleConfig
 import org.jenkinsci.plugins.identifieddata.api.IdentifiedByUUID;
 import org.jenkinsci.plugins.identifieddata.api.IdentifierUtils;
 import org.jenkinsci.plugins.identifieddata.api.NameResolver;
+import org.jenkinsci.plugins.identifieddata.api.ReferenceableByName;
 import org.kohsuke.accmod.Restricted;
 import org.kohsuke.accmod.restrictions.NoExternalUse;
 import org.kohsuke.stapler.AncestorInPath;
@@ -83,7 +84,7 @@ public class ArtifactSignerIndex extends GlobalConfiguration {
 		super.load();
 		this.signerMap.clear();
 		this.signers.stream()
-				.forEachOrdered(t -> this.signerMap.put(t.getUuid(), t));
+				.forEach(t -> this.signerMap.put(t.getUuid(), t));
 		// fix data post load
 		this.secureLabelExpression = fixSecureLabelExpression(this.secureLabelExpression);
 		this.secureWorkspaceSuffix = fixSecureWorkspaceSuffix(this.secureWorkspaceSuffix);
@@ -120,13 +121,19 @@ public class ArtifactSignerIndex extends GlobalConfiguration {
 
 	// used by jelly & JCasC
 	public List<SignerConfig> getSigners() {
-		return new ArrayList<>(this.signerMap.values());
+		return this.signerMap.values()
+				.stream()
+				.sorted(ReferenceableByName.COMPARE_BY_NAME_WITH_COMMENTS)
+				.collect(Collectors.toCollection(ArrayList::new));
 	}
 
 	// used by jelly
 	public List<SignerConfig> getSigners(final Item context) {
 		// TODO actually check the owner Item!
-		return new ArrayList<>(this.signerMap.values());
+		return this.signerMap.values()
+				.stream()
+				.sorted(ReferenceableByName.COMPARE_BY_NAME_WITH_COMMENTS)
+				.collect(Collectors.toCollection(ArrayList::new));
 	}
 
 	public void setDefaultSignerIdValue(final UUID value) {
